@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>owl</title>
+		<link rel="icon" type="image/svg+xml" href="/client/owl.svg" />
+		<link rel="stylesheet" href="/client/vendor/theme.css" />
+		<link rel="stylesheet" href="/client/style.css" />
+	</head>
+	<body>
+		<aside id="left">
+			<div id="sources"></div>
+			<div id="splitHandle" class="handle"></div>
+			<div id="treeBox">
+				<input id="filter" hidden placeholder="filter files, Enter opens, Esc closes" />
+				<div id="tree"></div>
+			</div>
+		</aside>
+		<div id="leftHandle" class="handle"></div>
+		<main id="main">
+			<header id="header"></header>
+			<div id="note" hidden></div>
+			<div id="panes">
+				<div class="pane" id="oldPane"></div>
+				<svg id="strip"></svg>
+				<div class="pane" id="newPane"></div>
+			</div>
+		</main>
+		<div id="help" hidden>
+			<dl>
+				<dt>n / F7</dt>
+				<dd>next change</dd>
+				<dt>p / Shift+F7</dt>
+				<dd>previous change</dd>
+				<dt>j / k</dt>
+				<dd>next / previous file</dd>
+				<dt>J / K</dt>
+				<dd>next / previous item in the top list</dd>
+				<dt>/</dt>
+				<dd>filter files (Enter opens, Esc closes)</dd>
+				<dt>c</dt>
+				<dd>hide / show all comment cards (inline style: close the open card)</dd>
+				<dt>v</dt>
+				<dd>switch comment style: side cards / inline</dd>
+				<dt>× / marker</dt>
+				<dd>× hides a card, clicking its marker brings it back</dd>
+				<dt>] / [</dt>
+				<dd>next / previous comment</dd>
+				<dt>r</dt>
+				<dd>refresh</dd>
+				<dt>?</dt>
+				<dd>this help</dd>
+			</dl>
+		</div>
+		<script src="/client/vendor/highlight.min.js"></script>
+		<script type="module" src="/client/app.ts"></script>
+	</body>
+</html>
