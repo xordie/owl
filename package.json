@@ -4,8 +4,12 @@
 	"private": true,
 	"type": "module",
 	"bin": {
-		"owl": "src/cli.ts"
+		"owl": "bin/owl.js"
 	},
+	"files": [
+		"bin",
+		"src"
+	],
 	"scripts": {
 		"check": "tsc --noEmit && prettier --check .",
 		"format": "prettier --write .",

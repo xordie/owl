@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { cpSync, mkdirSync } from "node:fs";
 import { test } from "node:test";
 import { join } from "node:path";
 import { makeTempDir } from "./helpers.ts";
@@ -24,6 +25,20 @@ test("unknown arguments print usage and exit 1", () => {
 
 test("--help prints usage and exits 0", () => {
 	const actual = runCli(makeTempDir(), "--help");
+	assert.equal(actual.status, 0);
+	assert.match(actual.stdout, /^usage: owl/);
+});
+
+test("runs from inside node_modules, where Node refuses to strip types", () => {
+	const root = join(import.meta.dirname, "..");
+	const installed = join(makeTempDir(), "node_modules", "owl");
+	mkdirSync(installed, { recursive: true });
+	for (const name of ["bin", "src", "package.json"])
+		cpSync(join(root, name), join(installed, name), { recursive: true });
+	const actual = spawnSync("node", [join(installed, "bin", "owl.js"), "--help"], {
+		cwd: makeTempDir(),
+		encoding: "utf8"
+	});
 	assert.equal(actual.status, 0);
 	assert.match(actual.stdout, /^usage: owl/);
 });
